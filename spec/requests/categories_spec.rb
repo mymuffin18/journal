@@ -32,10 +32,20 @@ RSpec.describe "Categories", type: :request do
     end
   end
 
-  describe "PATCH /categories/:id" do
+  describe "PATCH/PUT /categories/:id" do
     it 'should update the category data' do
       cat = FactoryBot.create(:category, name: 'testing', description: 'description')
       patch "/api/v1/categories/#{cat.id}", params: {category: {name: 'kitkat', description: 'i love kitkat'}}
+
+      expect(response).to have_http_status(200)
+      json_body = JSON.parse(response.body)
+      expect(json_body['name']).to eq('kitkat')
+      expect(json_body['description']).to eq('i love kitkat')
+    end
+
+    it 'should update the category using put' do
+      cat = FactoryBot.create(:category, name: 'testing', description: 'description')
+      put "/api/v1/categories/#{cat.id}", params: {category: {name: 'kitkat', description: 'i love kitkat'}}
 
       expect(response).to have_http_status(200)
       json_body = JSON.parse(response.body)
