@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'net-smtp', require: false
 
+gem 'validates_timeliness', '~> 6.0.0.beta2'

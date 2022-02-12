@@ -68,4 +68,20 @@ RSpec.describe Task, type: :model do
     t.date = Date.today
     expect(t).to be_valid
   end
+
+  it "date should not be before today" do
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    t = Task.new(
+      name: 'this is a name',
+      description: 'this is a description',
+      date: Date.new(2022, 2, 11),
+      category: c
+    )
+
+    expect(t).to_not be_valid
+    t.date = Date.today
+    expect(t).to be_valid
+    t.date = Date.new(2022, 2, 13)
+    expect(t).to be_valid
+  end
 end
