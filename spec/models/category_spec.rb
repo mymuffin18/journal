@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  it "has a name" do
+  it "should have a name" do
     category = Category.new(
       name: '',
       description: 'this is a description'
@@ -13,7 +13,7 @@ RSpec.describe Category, type: :model do
 
   end
 
-  it "has a description" do
+  it "should have a description" do
     category = Category.new(
       name: 'this is a title',
       description: ''
@@ -25,7 +25,7 @@ RSpec.describe Category, type: :model do
     
   end
 
-  it "has a title at least 3 characters long" do
+  it "title should have at least 3 characters long" do
     category = Category.new(
       name: 'as',
       description: 'this is a description'

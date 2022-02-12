@@ -19,9 +19,6 @@ RSpec.describe "Categories", type: :request do
 
       expect(response).to have_http_status(:success)
 
-      # get '/api/v1/categories/2'
-
-      # expect(response).to_not have_http_status(:success)
     end
   end
 
@@ -32,6 +29,18 @@ RSpec.describe "Categories", type: :request do
     }.to change { Category.count }.from(0).to(1)
 
       expect(response).to have_http_status(:created)
+    end
+  end
+
+  describe "PATCH /categories/:id" do
+    it 'should update the category data' do
+      cat = FactoryBot.create(:category, name: 'testing', description: 'description')
+      patch "/api/v1/categories/#{cat.id}", params: {category: {name: 'kitkat', description: 'i love kitkat'}}
+
+      expect(response).to have_http_status(200)
+      json_body = JSON.parse(response.body)
+      expect(json_body['name']).to eq('kitkat')
+      expect(json_body['description']).to eq('i love kitkat')
     end
   end
 
