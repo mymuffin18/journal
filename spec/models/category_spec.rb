@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   it "should have a name" do
+    user = User.create(email: "email@gmail.com", password: 'password')
     category = Category.new(
       name: '',
-      description: 'this is a description'
+      description: 'this is a description',
+      user: user
     )
 
     expect(category).to_not be_valid
@@ -14,9 +16,11 @@ RSpec.describe Category, type: :model do
   end
 
   it "should have a description" do
+    user = User.create(email: "email@gmail.com", password: 'password')
     category = Category.new(
       name: 'this is a title',
-      description: ''
+      description: '',
+      user: user
     )
 
     expect(category).to_not be_valid
@@ -26,9 +30,11 @@ RSpec.describe Category, type: :model do
   end
 
   it "title should have at least 3 characters long" do
+    user = User.create(email: "email@gmail.com", password: 'password')
     category = Category.new(
       name: 'as',
-      description: 'this is a description'
+      description: 'this is a description',
+      user: user
     )
 
     expect(category).to_not be_valid
@@ -37,9 +43,12 @@ RSpec.describe Category, type: :model do
   end
 
   it "has a description between 5 and 50 characters" do
+    
+    user = User.create(email: "email@gmail.com", password: 'password')
     category = Category.new(
       name: 'this is a title',
-      description: ''
+      description: '',
+      user: user
     )
 
     expect(category).to_not be_valid

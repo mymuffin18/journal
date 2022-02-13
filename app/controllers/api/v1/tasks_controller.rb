@@ -2,7 +2,7 @@ module Api
     module V1
         class TasksController < ApplicationController
             # TODO SHOW CREATE UPDATE DESTROY
-
+            before_action :authenticate_user!
             def show
                 task = Task.find(params[:id])
 

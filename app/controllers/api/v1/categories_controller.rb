@@ -1,8 +1,11 @@
 module Api
     module V1
         class CategoriesController < ApplicationController
+            before_action :authenticate_user!
+
             def index
-                categories = Category.all
+                
+                categories = current_user.categories
                 render json: categories.to_json, status: 200
             end
 

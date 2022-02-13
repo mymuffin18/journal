@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   it 'should have a name' do
-    c = FactoryBot.create(:category, name: 'Kitkat', description: 'I love kitkat')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Kitkat', description: 'I love kitkat', user:user)
     t = Task.new(
       name: '',
       description: 'this is a description',
@@ -15,7 +16,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "should have a description" do
-    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test', user:user)
     t = Task.new(
       name: 'this is a name',
       description: '',
@@ -29,7 +31,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "name have at least 3 characters long" do
-    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test', user:user)
     t = Task.new(
       name: '',
       description: 'this is a description',
@@ -43,7 +46,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "description should have at least 5 characters long" do
-    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test', user:user)
     t = Task.new(
       name: 'this is a name',
       description: '',
@@ -56,7 +60,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "should have a date" do
-    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test', user:user)
     t = Task.new(
       name: 'this is a name',
       description: 'this is a description',
@@ -70,7 +75,8 @@ RSpec.describe Task, type: :model do
   end
 
   it "date should not be before today" do
-    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test')
+    user = User.create(email: "email@gmail.com", password: 'password')
+    c = FactoryBot.create(:category, name: 'Testing', description: 'I love Test', user:user)
     t = Task.new(
       name: 'this is a name',
       description: 'this is a description',
