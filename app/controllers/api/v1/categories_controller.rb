@@ -11,8 +11,13 @@ module Api
 
             def show
                 category = Category.find(params[:id])
-
-                render json: category.to_json, status: 200
+                c = current_user.categories.where(id: category.id)
+                if c.length == 1
+                    c = c.first()
+                    render json: c.to_json, status: 200
+                else
+                    render json: { message: 'Category not found.'}, status: :not_found
+                end
             end
 
             
@@ -28,19 +33,29 @@ module Api
             end
             
             def update
-                category = Category.find(params[:id])
-
-                if category.update(category_params)
-                    render json: category, status: 200
+                query = Category.find(params[:id])
+                category = current_user.categories.where(id: query.id)
+                if category.length == 1
+                    category = category.first()
+                    if category.update(category_params)
+                        render json: category, status: 200
+                    else
+                        render json: category.errors, status: :unprocessable_entity
+                    end
                 else
-                    render json: category.errors, status: :unprocessable_entity
+                    render json: { message: "Category not found"}, status: :not_found
                 end
             end
 
             def destroy
-                Category.find(params[:id]).destroy!
-
-                head :no_content
+                query = Category.find(params[:id])
+                category = current_user.categories.where(id: query.id)
+                if category.length == 1
+                    c = category.first().destroy!
+                    head :no_content
+                else 
+                    render json: {message: "Category not found"}, status: :not_found
+                end
                 
             end
 

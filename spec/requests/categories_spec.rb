@@ -49,19 +49,6 @@ RSpec.describe "Categories", type: :request do
   end
 
   describe "PATCH/PUT /categories/:id" do
-    # it 'should update the category data' do
-    #   user = FactoryBot.create(:user, email: 'test@gmail.com', password: 'testing')
-    #   headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
-   
-    #   auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
-    #   cat = FactoryBot.create(:category, name: 'testing', description: 'description', user:user)
-    #   patch "/api/v1/categories/#{cat.id}", headers: auth_headers, params: {category: {description: 'test'}}.to_json
-
-    #   expect(response).to have_http_status(200)
-    #   json_body = JSON.parse(response.body)
-    #   # expect(json_body['name']).to eq('kitkat')
-    #   # expect(json_body['description']).to eq('i love kitkat')
-    # end
 
     it 'should update the category data' do
       user = FactoryBot.create(:user, email: 'test@gmail.com', password: 'testing')

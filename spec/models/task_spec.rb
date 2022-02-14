@@ -87,7 +87,6 @@ RSpec.describe Task, type: :model do
     expect(t).to_not be_valid
     t.date = Date.today
     expect(t).to be_valid
-    t.date = Date.new(2022, 2, 13)
-    expect(t).to be_valid
+    
   end
 end
