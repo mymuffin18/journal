@@ -3,6 +3,12 @@ module Api
         class TasksController < ApplicationController
             # TODO SHOW CREATE UPDATE DESTROY
             before_action :authenticate_user!
+
+            def index
+                tasks = Task.joins("INNER JOIN categories c ON tasks.category_id=c.id INNER JOIN users ON users.id=c.user_id WHERE tasks.date=#{Date.today} AND users.id=#{current_user.id}")
+                render json: tasks, status: :ok
+            end
+
             def show
                 query = Task.find(params[:id])
                 task = Task.joins("INNER JOIN categories c ON tasks.category_id=c.id INNER JOIN users ON users.id=c.user_id WHERE tasks.id=#{query.id} AND users.id=#{current_user.id}")
