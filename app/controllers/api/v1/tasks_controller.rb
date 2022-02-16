@@ -5,7 +5,7 @@ module Api
             before_action :authenticate_user!
 
             def index
-                tasks = Task.joins("INNER JOIN categories c ON tasks.category_id=c.id INNER JOIN users ON users.id=c.user_id WHERE tasks.date=#{Date.today} AND users.id=#{current_user.id}")
+                tasks = Task.joins("INNER JOIN categories c ON tasks.category_id=c.id INNER JOIN users ON users.id=c.user_id WHERE users.id=#{current_user.id}")
                 render json: tasks, status: :ok
             end
 
