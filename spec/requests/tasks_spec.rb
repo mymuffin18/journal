@@ -1,6 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe "Tasks", type: :request do
+
+  describe "GET /tasks/" do
+    it "it returns all user's tasks" do
+      user1 = FactoryBot.create(:user, email: 'test1@gmail.com', password: 'testing')
+      user2 = FactoryBot.create(:user, email: 'test2@gmail.com', password: 'testing')
+      c1 = FactoryBot.create(:category, name: 'category 1', description: 'category1 description', user: user1)
+      c2 = FactoryBot.create(:category, name: 'category 2', description: 'category2 description', user: user2)
+      t1 = FactoryBot.create(:task, name: 'task 1', description: 'task 1 description', date: Date.today, category:c1)
+      t2 = FactoryBot.create(:task, name: 'task 2', description: 'task 2 description', date: Date.today, category:c1)
+      t2 = FactoryBot.create(:task, name: 'task 3', description: 'task 3 description', date: Date.today, category:c2)
+
+      headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+   
+      auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user1)
+
+      get '/api/v1/tasks/', headers: auth_headers
+
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body).size).to eq(2)
+    end
+
+  end
+
   describe "GET /tasks/:id" do
     it 'it returns a task' do
       user = FactoryBot.create(:user, email: 'email@gmail.com', password: 'testing')
