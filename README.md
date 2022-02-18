@@ -115,12 +115,12 @@ You can get your token from signing in or from registration
 ## Retrieve user's category
 ```
 HTTP Method: GET
-URL: {{url}}/api/v1/categories/category_id
+URL: {{url}}/api/v1/categories/:id
 ```
 Parameters
 | Name        | Description                                                                             | Required |
 |-------------|-----------------------------------------------------------------------------------------|----------|
-| category_id | Category id this might return a 404 status if the current user doesn't own the category | Yes      |
+| :id | Category id this might return a 404 status if the current user doesn't own the category | Yes      |
 
 Request Headers
 | Name          | Required |
@@ -132,7 +132,7 @@ You can get your token from signing in or from registration
 ## Update user's category
 ```
 HTTP Method: PUT
-URL: {{url}}/api/v1/categories/category_id
+URL: {{url}}/api/v1/categories/:id
 ```
 
 Sample Request Body
@@ -216,6 +216,43 @@ Parameters
 | completed   | Boolean true or false. Has default of false | OPTIONAL |
 | category_id | category id                                 | Yes      |
 
+
+Request Headers
+| Name          | Required |
+|---------------|----------|
+| Authorization | Yes      |
+
+You can get your token from signing in or from registration
+
+## Update user task
+```
+HTTP Method: PUT
+URL: {{url}}/api/v1/tasks/:id
+```
+
+Sample Request Body
+```
+{
+    "name": "task name",
+    "description": "this is a description",
+    "date": "2022-02-14",
+    "completed": true
+}
+```
+NOTE:You can also use this endpoint if you only want to update the 'completed' value
+
+Request Headers
+| Name          | Required |
+|---------------|----------|
+| Authorization | Yes      |
+
+You can get your token from signing in or from registration
+
+## Delete Task
+```
+HTTP Method: DELETE
+URL: {{url}}/api/v1/tasks/:id
+```
 
 Request Headers
 | Name          | Required |
