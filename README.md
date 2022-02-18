@@ -264,4 +264,4 @@ You can get your token from signing in or from registration
 
 ## NOTE:
 * All retrieve detail views will return 404 status if the current user don't own them
-* Token will expire in 3 days so make sure you force the user to sign in to get a new one if the response throws a 401 error
+* Token will expire every 3 days so make sure you force the user to sign in to get a new one if the response throws a 401 error
