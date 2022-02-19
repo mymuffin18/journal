@@ -5,6 +5,7 @@ This app uses Ruby 3.0.2. To clone this app
 `git clone https://github.com/mymuffin18/journal.git`
 `cd journal`
 run `bundle install`
+check the [demo](https://journally-self.vercel.app/)
 
 ## API ENDPOINTS
 
